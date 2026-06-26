@@ -8,9 +8,9 @@ import { AuthProvider } from "./context/AuthContext";
 import { LoadingProvider } from "./context/LoadingContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    <LoadingProvider>
+  <LoadingProvider>
+    <AuthProvider>
       <App />
-    </LoadingProvider>
-  </AuthProvider>,
+    </AuthProvider>
+  </LoadingProvider>
 );

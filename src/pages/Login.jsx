@@ -7,6 +7,7 @@ import { getUserById } from "../services/userService";
 
 import LoginHero from "../components/LoginHero";
 import LoginForm from "../components/LoginForm";
+import { useLoading } from "../context/LoadingContext";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,22 +15,23 @@ function Login() {
 
   const navigate = useNavigate();
 
+  const { startLoading, stopLoading } = useLoading();
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
+      startLoading();
+
       const user = await loginUser(email, password);
 
       const userData = await getUserById(user.uid);
 
-      if (userData.role === "admin") {
-        navigate("/admin");
-      } else {
-        navigate("/employee");
-      }
-    } catch (error) {
-      console.log(error);
-      alert(error.message);
+      navigate(userData.role === "admin" ? "/admin" : "/employee");
+    } finally {
+      setTimeout(() => {
+        stopLoading();
+      }, 300);
     }
   };
 

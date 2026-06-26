@@ -10,6 +10,7 @@ import GlobalLoader from "./components/GlobalLoader";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
 import { useLoading } from "./context/LoadingContext";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const { user } = useAuth();
@@ -21,6 +22,7 @@ function App() {
       {loading && <GlobalLoader />}
 
       <BrowserRouter>
+        <ScrollToTop />
         <Suspense fallback={<GlobalLoader />}>
           <Routes>
             <Route path="/" element={<Login />} />

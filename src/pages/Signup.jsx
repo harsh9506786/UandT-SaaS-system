@@ -18,18 +18,21 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
-
+  const handleSignup = async () => {
     try {
-      await signupUser(name, email, password);
+      startLoading();
 
+      await signupUser(email, password, name);
       alert("Account Created Successfully");
 
       navigate("/");
     } catch (error) {
       console.log(error);
       alert(error.message);
+    } finally {
+      setTimeout(() => {
+        stopLoading();
+      }, 300);
     }
   };
 
