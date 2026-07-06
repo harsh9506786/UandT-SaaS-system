@@ -15,7 +15,7 @@ function LoginHero() {
         },
 
         mt: {
-          xs: 6, // 👈 mobile pe top se gap
+          xs: 10,
           sm: 8,
           md: 0,
         },
