@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Grid,
@@ -20,6 +21,7 @@ import UserCard from "../components/UserCard";
 import GroupsIcon from "@mui/icons-material/Groups";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import BadgeIcon from "@mui/icons-material/Badge";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 import AssignTaskModal from "../components/AssignTaskModal";
 
 import {
@@ -29,6 +31,7 @@ import {
 } from "../services/userService";
 
 function AdminDashboard() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [openTaskModal, setOpenTaskModal] = useState(false);
@@ -115,18 +118,46 @@ function AdminDashboard() {
         }}
       >
         <Container maxWidth="xl">
-          <Typography
-            variant="h4"
+          <Box
             sx={{
-              color: "#fff",
-
-              fontWeight: 700,
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 2,
               pt: 4,
               mb: 4,
             }}
           >
-            Admin Dashboard
-          </Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                color: "#fff",
+
+                fontWeight: 700,
+              }}
+            >
+              Admin Dashboard
+            </Typography>
+
+            <Button
+              variant="contained"
+              startIcon={<AssignmentIcon />}
+              onClick={() => navigate("/admin/tasks")}
+              sx={{
+                textTransform: "none",
+                fontWeight: 700,
+                borderRadius: 3,
+                px: 3,
+                background: "linear-gradient(135deg,#6366f1 0%, #8b5cf6 100%)",
+                "&:hover": {
+                  background: "linear-gradient(135deg,#7c3aed 0%, #9333ea 100%)",
+                },
+              }}
+            >
+              View All Tasks
+            </Button>
+          </Box>
 
           <Grid container spacing={3} mb={4}>
             <Grid size={{ xs: 12, md: 4 }}>

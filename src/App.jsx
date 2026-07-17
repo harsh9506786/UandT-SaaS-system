@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminTasks from "./pages/AdminTasks";
 import EmployeeDashboard from "./pages/EmployeeDashboard";
 
 import GlobalLoader from "./components/GlobalLoader";
@@ -33,6 +34,15 @@ function App() {
               element={
                 <ProtectedRoute user={user} role="admin">
                   <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/admin/tasks"
+              element={
+                <ProtectedRoute user={user} role="admin">
+                  <AdminTasks />
                 </ProtectedRoute>
               }
             />
